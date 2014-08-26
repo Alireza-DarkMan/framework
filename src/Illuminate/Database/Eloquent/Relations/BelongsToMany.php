@@ -296,6 +296,10 @@ class BelongsToMany extends Relation {
 		if ($columns == array('*'))
 		{
 			$columns = array($this->related->getTable().'.*');
+		}else{
+			foreach ($columns as $key => $column) {
+				$columns[$key] = $this->related->getTable().'.'.$column;
+			}
 		}
 
 		return array_merge($columns, $this->getAliasedPivotColumns());
